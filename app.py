@@ -1,3 +1,4 @@
+import json
 import os
 from flask import Flask, request
 from werkzeug.exceptions import BadRequest
@@ -13,11 +14,12 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 @app.route('/perform_query')
 def perform_query():
     try:
-        cmd1 = request.args['cmd1']
-        cmd2 = request.args['cmd2']
-        value1 = request.args['value1']
-        value2 = request.args['value2']
-        file_name = request.args['file_name']
+        data = json.loads(request.data)
+        cmd1 = data['cmd1']
+        cmd2 = data['cmd2']
+        value1 = data['value1']
+        value2 = data['value2']
+        file_name = data['file_name']
     except KeyError:
         raise BadRequest
 
