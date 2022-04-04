@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 
-@app.route('/perform_query')
+@app.route("/perform_query", methods=["POST"])
 def perform_query():
     try:
         data = json.loads(request.data)
